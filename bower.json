@@ -7,7 +7,7 @@
   "copyright": "First+Third",
   "main": "dist/smooth-scroller.bower.js",
   "dependencies": {
-    "jquery": "~1.X"
+    "jquery": ">=1.6 ~1.x"
   },
   "devDependencies": {
     "assert": "*",
