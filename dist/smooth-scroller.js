@@ -1,50 +1,36 @@
-/*!
- * smooth-scroller - Javascript lib to handle smooth scrolling
- * v0.1.2
- * https://github.com/firstandthird/smooth-scroller
- * copyright First+Third 2014
- * MIT License
-*/
+/* global window,document */
+'use strict';
 
-//smooth-scroller.js
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+easeInOutQuad = function easeInOutQuad(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return c / 2 * t * t + b;
+  t--;
+  return -c / 2 * (t * (t - 2) - 1) + b;
+};
 
-(function($) {
-  $.fn.smoothScroller = function(options) {
-    options = $.extend({}, $.fn.smoothScroller.defaults, options);
-    var el = $(this);
-
-    $(options.scrollEl).animate({
-      scrollTop: el.offset().top - $(options.scrollEl).offset().top - options.offset
-    }, options.speed, options.ease, function() {
-      var hash = el.attr('id');
-
-      if(hash.length) {
-        if(history.pushState) {
-          history.pushState(null, null, '#' + hash);
-        } else {
-          document.location.hash = hash;
-        }
-      }
-
-      el.trigger('smoothScrollerComplete');
-    });
-
-    return this;
-  };
-
-  $.fn.smoothScroller.defaults = {
-    speed: 400,
-    ease: 'swing',
-    scrollEl: 'body,html',
-    offset: 0
-  };
-
-  $('body').on('click', '[data-smoothscroller]', function(e) {
+var smoothScroller = function smoothScroller(el) {
+  el.addEventListener('click', function (e) {
     e.preventDefault();
-    var href = $(this).attr('href');
-
-    if(href.indexOf('#') === 0) {
-      $(href).smoothScroller();
-    }
+    var target = document.querySelector(el.getAttribute('href'));
+    var rect = target.getBoundingClientRect();
+    var offset = rect.top + window.scrollY;
+    window.scrollTo(0, offset);
   });
-}(jQuery));
+};
+
+var init = function init(query) {
+  if (!query) {
+    query = document.querySelectorAll('[data-smooth]');
+  }
+  for (var i = 0, c = query.length; i < c; i++) {
+    var el = query[i];
+    smoothScroller(el);
+  }
+};
+
+exports.default = init;
+
+//# sourceMappingURL=smooth-scroller.js.map
