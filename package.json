@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/smooth-scroller",
   "author": "First+Third",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "dist/smooth-scroller.js",
   "scripts": {
     "build": "mkdir -p dist && babel index.js --out-file dist/smooth-scroller.js --source-maps",

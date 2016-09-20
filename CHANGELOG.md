@@ -1,4 +1,18 @@
 
+1.0.0 / 2016-09-20
+==================
+
+  * updated readme
+  * set hash
+  * added DOMContentLoaded automatically
+  * Couple fixes for different directions
+  * Add easing
+  * updated git and npm ignore
+  * get example working
+  * removed dist folder
+  * refactored to es6 and no jquery
+  * readme driven development!
+
 0.1.2 / 2014-05-29 
 ==================
 
