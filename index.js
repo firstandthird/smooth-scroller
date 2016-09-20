@@ -43,11 +43,13 @@ const animate = function(startTime, start, end) {
 const scroll = function(el) {
   el.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.querySelector(el.getAttribute('href'));
+    const hash = el.getAttribute('href');
+    const target = document.querySelector(hash);
     const rect = target.getBoundingClientRect();
     const offset = rect.top + window.scrollY;
     const startTime = new Date();
     animate(startTime.getTime(), window.scrollY, offset);
+    window.location.hash = hash;
   });
 };
 
