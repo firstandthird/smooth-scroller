@@ -11,10 +11,7 @@ A tiny, es6 javascript lib to handle smooth scrolling
 Javascript
 
 ```javascript
-import smoothScroller from 'smooth-scroller'
-window.addEventListener('DOMContentLoaded', () => {
-  smoothScroller();
-});
+import 'smooth-scroller'
 ```
 
 HTML
