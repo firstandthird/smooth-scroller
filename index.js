@@ -10,16 +10,30 @@ const ease = function(t, b, c, d) {
 
 const animate = function(startTime, start, end) {
   const time = new Date().getTime();
-  let to = ease(time - startTime, start, end - start, duration);
+  const difference = end - start;
+  const goingUp = difference < 0;
 
-  if (to > end) {
-    to = end;
+  if (difference === 0) {
     return;
+  }
+
+  let to = Math.round(ease(time - startTime, start, difference, duration));
+
+  if (!goingUp && to > end) {
+    to = end;
+  }
+
+  if (goingUp && to < end) {
+    to = end;
   }
 
   window.scrollTo(0, to);
 
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  if (to === end) {
+    return;
+  }
+
+  if (to < 0) {
     return;
   }
 
