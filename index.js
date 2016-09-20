@@ -1,7 +1,7 @@
 /* global window,document */
 'use strict';
 
-easeInOutQuad = function(t, b, c, d) {
+const easeInOutQuad = function(t, b, c, d) {
   t /= d/2;
   if (t < 1) return c/2*t*t + b;
   t--;
