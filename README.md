@@ -1,43 +1,25 @@
 #smooth-scroller
 
-Javascript lib to handle smooth scrolling
+A tiny, es6 javascript lib to handle smooth scrolling
 
 ##Installation
 
-###Bower
-
-`bower install smooth-scroller`
-
-###Manual Download
-
-- [Development]()
-- [Production]()
+`npm install --save smooth-scroller`
 
 ##Usage
 
-Docs coming soon
+Javascript
 
-##Development
+```javascript
+import smoothScroller from 'smooth-scroller'
+window.addEventListener('DOMContentLoaded', () => {
+  smoothScroller();
+});
+```
 
-###Requirements
-
-- node and npm
-- bower `npm install -g bower`
-- grunt `npm install -g grunt-cli`
-
-###Setup
-
-- `npm install`
-- `bower install`
-
-###Run
-
-`grunt dev`
-
-or for just running tests on file changes:
-
-`grunt ci`
-
-###Tests
-
-`grunt mocha`
+HTML
+```html
+<a href="#foo" data-smooth>Scroll Smoothly</a>
+...some content...
+<div id="foo"></div>
+```
