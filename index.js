@@ -46,9 +46,9 @@ const scroll = function(el) {
     const hash = el.getAttribute('href');
     const target = document.querySelector(hash);
     const rect = target.getBoundingClientRect();
-    const offset = rect.top + window.scrollY;
+    const offset = rect.top + window.pageYOffset;
     const startTime = new Date();
-    animate(startTime.getTime(), window.scrollY, offset);
+    animate(startTime.getTime(), window.pageYOffset, offset);
     window.location.hash = hash;
   });
 };
