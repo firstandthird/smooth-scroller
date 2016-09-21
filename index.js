@@ -4,7 +4,7 @@
 const duration = 1000;
 
 const ease = function(t, b, c, d) {
-  if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+  if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b; //eslint-disable-line
   return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
 };
 
