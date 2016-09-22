@@ -1,4 +1,12 @@
 
+1.0.1 / 2016-09-22
+==================
+
+  * disable if requestAnimationFrame doesn't exist
+  * support for ie11 and bug fixes
+  * check if url starts with '#'
+  * better dev
+
 1.0.0 / 2016-09-20
 ==================
 
