@@ -49,9 +49,10 @@ const scroll = function(el) {
     e.preventDefault();
     const target = document.querySelector(hash);
     const rect = target.getBoundingClientRect();
-    const offset = rect.top + window.scrollY;
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const offset = Math.round(rect.top + scrollY);
     const startTime = new Date();
-    animate(startTime.getTime(), window.scrollY, offset);
+    animate(startTime.getTime(), scrollY, offset);
     window.location.hash = hash;
   });
 };
