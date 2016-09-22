@@ -58,6 +58,9 @@ const scroll = function(el) {
 };
 
 const init = function(query) {
+  if (!window.requestAnimationFrame) {
+    return;
+  }
   if (!query) {
     query = document.querySelectorAll('[data-smooth]');
   }
