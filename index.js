@@ -42,8 +42,11 @@ const animate = function(startTime, start, end) {
 
 const scroll = function(el) {
   el.addEventListener('click', (e) => {
-    e.preventDefault();
     const hash = el.getAttribute('href');
+    if (hash[0] !== '#') {
+      return;
+    }
+    e.preventDefault();
     const target = document.querySelector(hash);
     const rect = target.getBoundingClientRect();
     const offset = rect.top + window.scrollY;
