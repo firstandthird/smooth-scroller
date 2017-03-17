@@ -35,7 +35,10 @@
     "static-server": "^2.0.3"
   },
   "eslintConfig": {
-    "extends": "firstandthird"
+    "extends": "firstandthird",
+    "parserOptions": {
+      "sourceType": "module"
+    }
   },
   "babel": {
     "presets": ["es2015"]

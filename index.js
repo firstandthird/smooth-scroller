@@ -1,5 +1,4 @@
 /* global window,document */
-'use strict';
 
 const duration = 1000;
 
@@ -40,7 +39,7 @@ const animate = function(startTime, start, end) {
   window.requestAnimationFrame(() => animate(startTime, start, end));
 };
 
-const scroll = function(el) {
+const scroll = function(el, offset) {
   el.addEventListener('click', (e) => {
     const hash = el.getAttribute('href');
     if (hash[0] !== '#') {
@@ -50,14 +49,16 @@ const scroll = function(el) {
     const target = document.querySelector(hash);
     const rect = target.getBoundingClientRect();
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const offset = Math.round(rect.top + scrollY);
+    const adjustedOffset = Math.round(rect.top + scrollY) + offset;
     const startTime = new Date();
-    animate(startTime.getTime(), scrollY, offset);
-    window.location.hash = hash;
+    animate(startTime.getTime(), scrollY, adjustedOffset);
   });
 };
 
-const init = function(query) {
+const init = function({
+  query = false,
+  offset = 0
+} = {}) {
   if (!window.requestAnimationFrame) {
     return;
   }
@@ -66,12 +67,14 @@ const init = function(query) {
   }
   for (let i = 0, c = query.length; i < c; i++) {
     const el = query[i];
-    scroll(el);
+    scroll(el, offset);
   }
 };
 
 export default init;
 
 window.addEventListener('DOMContentLoaded', () => {
-  init();
+  init({
+    offset: 100
+  });
 });
