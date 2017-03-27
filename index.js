@@ -57,24 +57,16 @@ const scroll = function(el, offset) {
 
 const init = function({
   query = false,
-  offset = 0
+  offset = 0,
 } = {}) {
   if (!window.requestAnimationFrame) {
     return;
   }
-  if (!query) {
-    query = document.querySelectorAll('[data-smooth]');
-  }
-  for (let i = 0, c = query.length; i < c; i++) {
-    const el = query[i];
+  const els = document.querySelectorAll(query || '[data-smooth]');
+  for (let i = 0, c = els.length; i < c; i++) {
+    const el = els[i];
     scroll(el, offset);
   }
 };
 
 export default init;
-
-window.addEventListener('DOMContentLoaded', () => {
-  init({
-    offset: 100
-  });
-});
