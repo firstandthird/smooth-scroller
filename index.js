@@ -56,13 +56,13 @@ const scroll = function(el, offset) {
 };
 
 const init = function({
-  query = false,
+  query = '[data-smooth]',
   offset = 0,
 } = {}) {
   if (!window.requestAnimationFrame) {
     return;
   }
-  const els = document.querySelectorAll(query || '[data-smooth]');
+  const els = document.querySelectorAll(query);
   for (let i = 0, c = els.length; i < c; i++) {
     const el = els[i];
     scroll(el, offset);
