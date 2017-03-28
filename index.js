@@ -51,7 +51,9 @@ const scroll = function(el, offset) {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
     const adjustedOffset = Math.round(rect.top + scrollY) + offset;
     const startTime = new Date();
+    window.history.pushState(null, 'Scroll', hash);
     animate(startTime.getTime(), scrollY, adjustedOffset);
+    document.querySelector(hash).focus();
   });
 };
 
@@ -65,6 +67,7 @@ const init = function({
   const els = document.querySelectorAll(query);
   for (let i = 0, c = els.length; i < c; i++) {
     const el = els[i];
+    el.tabIndex = '-1';
     scroll(el, offset);
   }
 };
