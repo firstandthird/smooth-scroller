@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/smooth-scroller",
   "author": "First+Third <code@firstandthird.com> (http://firstandthird.com/)",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/smooth-scroller.js",
   "module": "index.js",
   "scripts": {
@@ -15,7 +15,10 @@
     "prepublish": "scriptkit"
   },
   "watch": {
-    "index.js": ["lint", "build"]
+    "index.js": [
+      "lint",
+      "build"
+    ]
   },
   "keywords": [
     "browser",
