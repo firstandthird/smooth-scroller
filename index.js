@@ -40,20 +40,26 @@ const animate = function(startTime, start, end) {
   window.requestAnimationFrame(() => animate(startTime, start, end));
 };
 
-const scroll = function(el) {
+const scroll = function(target, hash) {
+  const rect = target.getBoundingClientRect();
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  const offset = Math.round(rect.top + scrollY);
+  const startTime = new Date();
+  animate(startTime.getTime(), scrollY, offset);
+
+  if (hash) {
+    window.location.hash = hash;
+  }
+};
+
+const listenEvent = function(el) {
   el.addEventListener('click', (e) => {
     const hash = el.getAttribute('href');
     if (hash[0] !== '#') {
       return;
     }
     e.preventDefault();
-    const target = document.querySelector(hash);
-    const rect = target.getBoundingClientRect();
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const offset = Math.round(rect.top + scrollY);
-    const startTime = new Date();
-    animate(startTime.getTime(), scrollY, offset);
-    window.location.hash = hash;
+    scroll(document.querySelector(hash), hash);
   });
 };
 
@@ -66,11 +72,11 @@ const init = function(query) {
   }
   for (let i = 0, c = query.length; i < c; i++) {
     const el = query[i];
-    scroll(el);
+    listenEvent(el);
   }
 };
 
-export default init;
+export { init as default, scroll };
 
 window.addEventListener('DOMContentLoaded', () => {
   init();
