@@ -54,6 +54,12 @@ const scroll = function(target, hash, offset = 0) {
 };
 
 const listenEvent = function(el, offset) {
+  if (el.dataset.smoothActive) {
+    return;
+  }
+
+  el.dataset.smoothActive = true;
+
   el.addEventListener('click', (e) => {
     const hash = el.getAttribute('href');
     if (hash[0] !== '#') {
