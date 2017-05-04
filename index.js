@@ -40,39 +40,49 @@ const animate = function(startTime, start, end) {
   window.requestAnimationFrame(() => animate(startTime, start, end));
 };
 
-const scroll = function(target, hash) {
+const scroll = function(target, hash, offset = 0) {
   const rect = target.getBoundingClientRect();
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-  const offset = Math.round(rect.top + scrollY);
+  const adjustedOffset = Math.round(rect.top + scrollY) + offset;
   const startTime = new Date();
-  animate(startTime.getTime(), scrollY, offset);
-
-  if (hash) {
-    window.location.hash = hash;
+  if (!target.hasAttribute('tabindex')) {
+    target.tabIndex = '-1';
   }
+  window.history.pushState(null, 'Scroll', hash);
+  animate(startTime.getTime(), scrollY, adjustedOffset);
+  target.focus();
 };
 
-const listenEvent = function(el) {
+const listenEvent = function(el, offset) {
+  if (el.dataset.smoothActive) {
+    return;
+  }
+
+  el.dataset.smoothActive = true;
+
   el.addEventListener('click', (e) => {
     const hash = el.getAttribute('href');
     if (hash[0] !== '#') {
       return;
     }
     e.preventDefault();
-    scroll(document.querySelector(hash), hash);
+
+    scroll(document.querySelector(hash), hash, offset);
   });
 };
 
-const init = function(query) {
+const init = function({
+  query = '[data-smooth]',
+  offset = 0,
+} = {}) {
   if (!window.requestAnimationFrame) {
     return;
   }
-  if (!query) {
-    query = document.querySelectorAll('[data-smooth]');
-  }
-  for (let i = 0, c = query.length; i < c; i++) {
-    const el = query[i];
-    listenEvent(el);
+  const els = document.querySelectorAll(query);
+
+  for (let i = 0, c = els.length; i < c; i++) {
+    const el = els[i];
+    listenEvent(el, offset);
   }
 };
 

@@ -54,6 +54,9 @@
   },
   "eslintConfig": {
     "extends": "firstandthird",
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "env": {
       "browser": true
     }
