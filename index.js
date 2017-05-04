@@ -1,4 +1,5 @@
 /* global window,document */
+'use strict';
 
 const duration = 1000;
 
@@ -39,21 +40,28 @@ const animate = function(startTime, start, end) {
   window.requestAnimationFrame(() => animate(startTime, start, end));
 };
 
-const scroll = function(el, offset) {
+const scroll = function(target, hash, offset = 0) {
+  const rect = target.getBoundingClientRect();
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  const adjustedOffset = Math.round(rect.top + scrollY) + offset;
+  const startTime = new Date();
+  if (!target.hasAttribute('tabindex')) {
+    target.tabIndex = '-1';
+  }
+  window.history.pushState(null, 'Scroll', hash);
+  animate(startTime.getTime(), scrollY, adjustedOffset);
+  target.focus();
+};
+
+const listenEvent = function(el, offset) {
   el.addEventListener('click', (e) => {
     const hash = el.getAttribute('href');
     if (hash[0] !== '#') {
       return;
     }
     e.preventDefault();
-    const target = document.querySelector(hash);
-    const rect = target.getBoundingClientRect();
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const adjustedOffset = Math.round(rect.top + scrollY) + offset;
-    const startTime = new Date();
-    window.history.pushState(null, 'Scroll', hash);
-    animate(startTime.getTime(), scrollY, adjustedOffset);
-    document.querySelector(hash).focus();
+
+    scroll(document.querySelector(hash), hash, offset);
   });
 };
 
@@ -65,11 +73,15 @@ const init = function({
     return;
   }
   const els = document.querySelectorAll(query);
+
   for (let i = 0, c = els.length; i < c; i++) {
     const el = els[i];
-    el.tabIndex = '-1';
-    scroll(el, offset);
+    listenEvent(el, offset);
   }
 };
 
-export default init;
+export { init as default, scroll };
+
+window.addEventListener('DOMContentLoaded', () => {
+  init();
+});
