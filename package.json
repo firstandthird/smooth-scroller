@@ -60,5 +60,8 @@
     "env": {
       "browser": true
     }
+  },
+  "dependencies": {
+    "domassist": "^1.9.0"
   }
 }

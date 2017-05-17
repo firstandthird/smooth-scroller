@@ -1,5 +1,6 @@
 /* global window,document */
 'use strict';
+import { fire } from 'domassist';
 
 const duration = 1000;
 
@@ -8,7 +9,7 @@ const ease = function(t, b, c, d) {
   return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
 };
 
-const animate = function(startTime, start, end) {
+const animate = function(startTime, start, end, callback = function() {}) {
   const time = new Date().getTime();
   const difference = end - start;
   const goingUp = difference < 0;
@@ -30,6 +31,7 @@ const animate = function(startTime, start, end) {
   window.scrollTo(0, to);
 
   if (to === end) {
+    setTimeout(callback);
     return;
   }
 
@@ -37,10 +39,11 @@ const animate = function(startTime, start, end) {
     return;
   }
 
-  window.requestAnimationFrame(() => animate(startTime, start, end));
+  window.requestAnimationFrame(() => animate(startTime, start, end, callback));
 };
 
 const scroll = function(target, hash, offset = 0) {
+  fire(target, 'smoothscroll:start', { bubbles: true });
   const rect = target.getBoundingClientRect();
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
   const adjustedOffset = Math.round(rect.top + scrollY) + offset;
@@ -49,7 +52,9 @@ const scroll = function(target, hash, offset = 0) {
     target.tabIndex = '-1';
   }
   window.history.pushState(null, 'Scroll', hash);
-  animate(startTime.getTime(), scrollY, adjustedOffset);
+  animate(startTime.getTime(), scrollY, adjustedOffset, () => {
+    fire(target, 'smoothscroll:end', { bubbles: true });
+  });
   target.focus();
 };
 
