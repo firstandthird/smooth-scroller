@@ -71,14 +71,20 @@ const listenEvent = function(el, offset) {
   });
 };
 
-const init = function({
-  query = '[data-smooth]',
-  offset = 0,
-} = {}) {
+const init = function(query = '[data-smooth]', offset = 0) {
   if (!window.requestAnimationFrame) {
     return;
   }
-  const els = document.querySelectorAll(query);
+
+  let els = query;
+
+  if (typeof query === 'string') {
+    els = document.querySelectorAll(query);
+  }
+
+  if (els instanceof Element) {
+    els = [els];
+  }
 
   for (let i = 0, c = els.length; i < c; i++) {
     const el = els[i];
