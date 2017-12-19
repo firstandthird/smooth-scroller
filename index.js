@@ -42,7 +42,7 @@ const animate = function(startTime, start, end, callback = function() {}) {
   window.requestAnimationFrame(() => animate(startTime, start, end, callback));
 };
 
-const scroll = function(target, hash, offset = 0) {
+const scroll = function(target, hash, offset = 0, silent = false) {
   fire(target, 'smoothscroll:start', { bubbles: true });
   const rect = target.getBoundingClientRect();
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -51,7 +51,11 @@ const scroll = function(target, hash, offset = 0) {
   if (!target.hasAttribute('tabindex')) {
     target.tabIndex = '-1';
   }
-  window.history.pushState(null, 'Scroll', hash);
+
+  if (!silent) {
+    window.history.pushState(null, 'Scroll', hash);
+  }
+
   animate(startTime.getTime(), scrollY, adjustedOffset, () => {
     fire(target, 'smoothscroll:end', { bubbles: true });
   });
