@@ -101,7 +101,7 @@ const init = function(query = '[data-smooth]', offset = 0) {
   }
 };
 
-export { init as default, scroll };
+export { init, scroll };
 
 window.addEventListener('DOMContentLoaded', () => {
   init();

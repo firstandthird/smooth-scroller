@@ -39,7 +39,7 @@ Custom events are fired on the element:
 
 Smooth-scroller exposes two methods:
 
-### default([selector='[data-smooth]'], [offset=0])
+### init([selector='[data-smooth]'], [offset=0])
 
 Enables smooth-scroller on the elements matched by `selector`.
 
