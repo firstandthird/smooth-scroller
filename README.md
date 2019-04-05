@@ -39,18 +39,22 @@ Custom events are fired on the element:
 
 Smooth-scroller exposes two methods:
 
-### default([selector='[data-smooth]'], [offset=0])
+### default(_[selector='[data-smooth]'], [offset=0]_)
 
 Enables smooth-scroller on the elements matched by `selector`.
 
 #### Parameters
 
-`selector` - {string = `'[data-smooth]'`} - Elements that will trigger smooth-scroll call once they're clicked
-`offset` - {Number = `0`} - Controls the distance (negative or positive) between the top border of the element and the top border of the window.
+`selector='[data-smooth]'` - _{String}_ - Elements that will trigger smooth-scroll call once they're clicked
 
-### scroll(target, hash, [offset=0], [silent=false])
+`offset=0` - _{Number}_ - Controls the distance (negative or positive) between the top border of the element and the top border of the window.
 
-`target` - {string|Element|NodeList} - Target element to scroll
-`hash` - {string|Element|NodeList} - DOM element ID to scroll
-`offset` - {Number = `0`} - Controls the distance (negative or positive) between the top border of the element and the top border of the window.
-`silent` - {Boolean = `false`} - If enabled, will generate a [`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History_API) event
+### scroll(target, hash, _[offset=0], [silent=false]_)
+
+`target` - _{string|Element|NodeList}_ - Target element to scroll
+
+`hash` - _{string|Element|NodeList}_ - DOM element ID to scroll
+
+`offset=0` - _{Number}_ - Controls the distance (negative or positive) between the top border of the element and the top border of the window.
+
+`silent=false` - _{Boolean}_ - If enabled, will generate a [`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History_API) event
