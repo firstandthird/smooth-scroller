@@ -1,2 +1,10 @@
 node_modules
-example
+npm-debug.log
+.idea
+test/*
+*.map
+.DS_Store
+.git
+.editorconfig
+.node-version
+.travis.yml

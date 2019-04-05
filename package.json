@@ -5,20 +5,14 @@
   "author": "First+Third <code@firstandthird.com> (http://firstandthird.com/)",
   "license": "MIT",
   "version": "1.4.0",
-  "main": "dist/smooth-scroller.js",
-  "module": "index.js",
+  "main": "index.js",
+  "module": "dist/smooth-scroller.esm.js",
   "scripts": {
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "scriptkit"
-  },
-  "watch": {
-    "index.js": [
-      "lint",
-      "build"
-    ]
+    "prepublishOnly": "scriptkit"
   },
   "keywords": [
     "browser",
@@ -32,36 +26,29 @@
   "bugs": {
     "url": "https://github.com/firstandthird/smooth-scroller/issues"
   },
+  "dependencies": {
+    "domassist": "^2.0.2"
+  },
   "devDependencies": {
-    "eslint-config-firstandthird": "3.2.0",
-    "eslint-plugin-import": "2.2.0",
-    "scriptkit": "0.2.0"
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "scriptkit": "^2.0.3"
   },
   "scriptkit": {
     "test": {
       "enabled": false
     },
+    "serve": {
+      "enabled": true
+    },
     "files": {
       "dist/smooth-scroller.js": "index.js"
-    },
-    "scripts": {
-      "babel": {
-        "exclude": [
-          "node_modules/tape-rollup/*"
-        ]
-      }
     }
   },
   "eslintConfig": {
     "extends": "firstandthird",
-    "parserOptions": {
-      "sourceType": "module"
-    },
     "env": {
       "browser": true
     }
-  },
-  "dependencies": {
-    "domassist": "^1.9.0"
   }
 }
