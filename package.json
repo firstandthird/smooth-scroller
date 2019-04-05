@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/smooth-scroller",
   "author": "First+Third <code@firstandthird.com> (http://firstandthird.com/)",
   "license": "MIT",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "main": "index.js",
   "module": "dist/smooth-scroller.esm.js",
   "scripts": {
