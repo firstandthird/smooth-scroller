@@ -1,6 +1,6 @@
 # Smooth-scroller
 
-<span class="smooth-scroller-npmversion"><a href="https://npmjs.org/package/smooth-scroller" title="View this project on NPM"><img src="https://img.shields.io/npm/v/smooth-scroller.svg" alt="NPM version" /></a></span>
+![npm](https://img.shields.io/npm/v/smooth-scroller.svg)
 
 A tiny, ES6 JavaScript lib to handle smooth scrolling.
 
