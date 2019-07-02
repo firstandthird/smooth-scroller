@@ -6,11 +6,11 @@
   "license": "MIT",
   "version": "2.0.0",
   "main": "index.js",
-  "module": "dist/smooth-scroller.esm.js",
+  "module": "dist/smooth-scroller.js",
   "scripts": {
     "start": "scriptkit",
-    "build": "scriptkit build",
     "dev": "scriptkit dev",
+    "build": "scriptkit build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "scriptkit"
   },
@@ -27,12 +27,12 @@
     "url": "https://github.com/firstandthird/smooth-scroller/issues"
   },
   "dependencies": {
-    "domassist": "^2.0.2"
+    "domassist": "^2.2.0"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "scriptkit": "^2.0.3"
+    "eslint-config-firstandthird": "^4.4.0",
+    "eslint-plugin-import": "^2.18.0",
+    "scriptkit": "^3.0.0"
   },
   "scriptkit": {
     "test": {
