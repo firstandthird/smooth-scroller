@@ -18,13 +18,18 @@ const animate = function(startTime, start, end, callback = function() {}) {
     return;
   }
 
-  let to = Math.round(ease(time - startTime, start, difference, duration));
+  const delta = time - startTime;
+  let to = Math.round(ease(delta, start, difference, duration));
 
   if (!goingUp && to > end) {
     to = end;
   }
 
   if (goingUp && to < end) {
+    to = end;
+  }
+
+  if (delta > duration) {
     to = end;
   }
 
