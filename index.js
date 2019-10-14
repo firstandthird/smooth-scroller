@@ -48,6 +48,10 @@ const animate = function(startTime, start, end, callback = function() {}) {
 };
 
 const scroll = function(target, hash, offset = 0, silent = false) {
+  if (!target) {
+    return;
+  }
+
   fire(target, 'smoothscroll:start', { bubbles: true });
   const rect = target.getBoundingClientRect();
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
