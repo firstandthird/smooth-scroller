@@ -1,6 +1,6 @@
 # Smooth-scroller
 
-![npm](https://img.shields.io/npm/v/smooth-scroller.svg)
+![npm](https://img.shields.io/npm/v/smooth-scroller.svg?style=for-the-badge)
 
 A tiny, ES6 JavaScript lib to handle smooth scrolling.
 
